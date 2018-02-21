@@ -1,0 +1,28 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bamazon.js",
+  "dependencies": {
+    "inquirer": "^5.1.0",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamMast/Bamazon.git"
+  },
+  "keywords": [
+    "Bamazon",
+    "Market"
+  ],
+  "author": "Sam Mast",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamMast/Bamazon/issues"
+  },
+  "homepage": "https://github.com/SamMast/Bamazon#readme"
+}
