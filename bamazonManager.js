@@ -67,7 +67,7 @@ function displayItems() {
 
   	});
 
-  	start();
+  	// start();
 
 }
 
@@ -90,7 +90,7 @@ function displayLowInventory() {
 
   	});
 
-  	start();
+  	// start();
 
 }
 

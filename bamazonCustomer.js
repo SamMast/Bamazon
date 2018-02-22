@@ -75,7 +75,7 @@ function run() {
 	    	} else {
 	    		var leftover = (quantity - amount);
 			// Update the SQL database to reflect the remaining quantity.
-				updateItem(answers.ID, leftover);
+				updateItem(answers.ID, "stock_quantity", leftover);
 
 			// Once the update goes through, show the customer the total cost of their purchase.
 				showCost(amount, answers.ID);
@@ -91,11 +91,11 @@ function run() {
 }
 
 
-function updateItem(ID, leftover) {
+function updateItem(ID, updateLocation, updateAmount) {
 	var obj = {};
 	var objB = {};
 
-	obj.stock_quantity = leftover;
+	obj[updateLocation] = updateAmount;
 	objB.item_id = ID;
 
   	var query = connection.query(
@@ -109,11 +109,15 @@ function updateItem(ID, leftover) {
 }
 
 function showCost(amountPurchased, ID) {
-  	var query = connection.query("SELECT * FROM products WHERE ?", {item_id: ID}, function(err, res) {
+  	connection.query("SELECT * FROM products WHERE ?", {item_id: ID}, function(err, res) {
 		if (err) throw err;
 		var cost = res[0].price * amountPurchased; 
-		console.log(`Total cost for ${amountPurchased} ${res[0].product_name}(s) is: $${cost}`)
+		console.log(`Total cost for ${amountPurchased} ${res[0].product_name}(s) is: $${cost}`);
 
+		var previousCost = res[0].product_sales;
+		var newCost = (cost + previousCost);
+
+		updateItem(ID, "product_sales", newCost);
 	});
 
 }
