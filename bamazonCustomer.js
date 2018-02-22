@@ -46,23 +46,23 @@ function run() {
 	    name: "ID",
 	    message: "What is the ID of the item you would like to purchase?",
 	    type: "input",
-        // validate: function(value) {
-        //   if (isNAN(value) === false) {
-        //     return true;
-        //   }
-        //   return false;
+        validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          return false;
         }
 	  },
 	  {
 	    name: "amount",
 	    message: "How many would you like to buy?",
 	    type: "input",
-	    // validate: function(value) {
-     //      if (isNAN(value) === false) {
-     //        return true;
-     //      }
-     //      return false;
-     //    }
+	    validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          return false;
+        }
 	  }
 	]).then(function(answers) {
 

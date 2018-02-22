@@ -101,23 +101,23 @@ function addToInventory(cb) {
 	    name: "ID",
 	    message: "Type the ID of the item you would like to add to:",
 	    type: "input",
-        // validate: function(value) {
-        //   if (isNAN(value) === false) {
-        //     return true;
-        //   }
-        //   return false;
-        // }
+        validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          return false;
+        }
 	  },
 	  {
 	  	name: "amount",
 	  	message: "How many would you like to add of this item?",
 	  	type: "input",
-        // validate: function(value) {
-        //   if (isNAN(value) === false) {
-        //     return true;
-        //   }
-        //   return false;
-        // }
+        validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          return false;
+        }
 	  }
 	]).then(function(answer) {
 
@@ -167,23 +167,23 @@ function addNewProduct(cb) {
 	    name: "price",
 	    message: "New Product Price:",
 	    type: "input"
-        // validate: function(value) {
-        //   if (isNAN(value) === false) {
-        //     return true;
-        //   }
-        //   return false;
-        // }
+        validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          return false;
+        }
 	  	},
 	  	{
 	    name: "amount",
 	    message: "New Product Stock Quantity:",
 	    type: "input",
-        // validate: function(value) {
-        //   if (isNAN(value) === false) {
-        //     return true;
-        //   }
-        //   return false;
-        // }
+        validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          return false;
+        }
 	  	}
 	]).then(function(answer) {
 

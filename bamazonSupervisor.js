@@ -72,12 +72,12 @@ function createNew(cb) {
       name: "cost",
       message: "New Department Over Head Cost:",
       type: "input",
-      // validate: function(value) {
-      //   if (isNAN(value) === false) {
-      //     return true;
-      //   }
-      //   return false;
-      // }
+      validate: function(value) {
+        if (isNaN(value) === false) {
+          return true;
+        }
+        return false;
+      }
       }
   ]).then(function(answer) {
 
