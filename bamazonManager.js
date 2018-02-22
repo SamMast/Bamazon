@@ -26,7 +26,7 @@ function start() {
 	    name: "choice",
 	    message: "Welcome Manager.  Please Choose an Action",
 	    type: "rawlist",
-	    choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
+	    choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product", "QUIT"]
 	  }
 	]).then(function(answer) {
 
@@ -42,6 +42,9 @@ function start() {
 		} else if (answer.choice === "Add New Product") {
 			addNewProduct();
 
+		} else if (answer.choice === "QUIT") {
+			console.log("Good-Bye")
+			connection.end();
 		}
 
 
@@ -125,7 +128,7 @@ function addToInventory() {
 				}
 		  	);
 		});
-
+ 
 	});
 
 
@@ -134,9 +137,46 @@ function addToInventory() {
 }
 
 function addNewProduct() {
+ 	console.log("Inserting a new Product...\n");
+  
+ 	inquirer.prompt([
+	  	{
+	    name: "name",
+	    message: "New Product Name:",
+	    type: "input"
+	  	},
+	  	{
+	    name: "dep",
+	    message: "New Product Department:",
+	    type: "input"
+	  	},
+	  	{
+	    name: "price",
+	    message: "New Product Price:",
+	    type: "input"
+	  	},
+	  	{
+	    name: "amount",
+	    message: "New Product Stock Quantity:",
+	    type: "input"
+	  	}
+	]).then(function(answer) {
 
+	  	var query = connection.query(
+		    "INSERT INTO products SET ?",
+		    {
+		    product_name: answer.name,
+		    department_name: answer.dep,
+		    price: answer.price,
+		    stock_quantity: answer.amount
+		    },
+		    function(err, res) {
+		      console.log("Product inserted!\n");
+		    }
+	  	);
 
+	});
 
-  	start();
+  	// start();
 
 }
