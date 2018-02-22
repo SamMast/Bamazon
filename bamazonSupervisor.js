@@ -23,7 +23,7 @@ function start() {
   inquirer.prompt([
       {
         name: "choice",
-        message: "Welcome Supervisor.  Please Choose an Action",
+        message: "\nWelcome Supervisor.  Please Choose an Action\n",
         type: "rawlist",
         choices: ["View Product Sales by Department", "Create New Department", "QUIT"]
       }
@@ -36,7 +36,7 @@ function start() {
         createNew(again);
 
       } else if (answer.choice === "QUIT") {
-        console.log("Good-Bye")
+        console.log("\nThanks for visiting BAMAZON, Good-Bye!\n")
         connection.end();
       }
 
@@ -46,12 +46,20 @@ function start() {
 
 
 function viewAll(cb) {
-  connection.query("SELECT * FROM departments", function(err, res) {
+  connection.query("SELECT * FROM departments LEFT JOIN products ON (products.department_name = departments.department_name)", function(err, res) {
     if (err) throw err;
+    console.log(res);
 
-    console.log(res)
-    //display table here with npm table packase
+    //Once I can get values to display, then try to display table here with npm cli-table package
+    console.log(`\n....................................\nCurrent Department Sales:\n....................................\n---------------------------------`)
 
+      for (var i = 0; i < res.length; i++) {
+        var totalProfit = (parseInt(res[i].product_sales) - parseInt(res[i].over_head_costs));
+
+        console.log(`Department ID: ${res[i].department_id}\nDepartment Name: ${res[i].department_name}\nOverhead Costs: $${res[i].over_head_costs}\nProduct Sales: ${res[i].product_sales}\nTotal Profit: ${totalProfit}\n---------------------------------`);
+      }
+
+    console.log("....................................")
 
     cb()
 
@@ -65,12 +73,12 @@ function createNew(cb) {
   inquirer.prompt([
       {
       name: "name",
-      message: "New Department Name:",
+      message: "\nNew Department Name:",
       type: "input"
       },
       {
       name: "cost",
-      message: "New Department Over Head Cost:",
+      message: "\nNew Department Over Head Cost:",
       type: "input",
       validate: function(value) {
         if (isNaN(value) === false) {
@@ -102,16 +110,17 @@ function again() {
   inquirer.prompt([
       {
         type: "confirm",
-        message: "Back to the Store?",
+        message: "\nBack to the Store?",
         name: "confirm",
         default: true
       }
   ]).then(function(answer) {
 
     if (answer.confirm) {
-        displayItems(run);
+        start();
     } else {
-        connection.end();
+      console.log("\nThanks for visiting BAMAZON, Good-Bye!\n")
+      connection.end();
     }
     
   });

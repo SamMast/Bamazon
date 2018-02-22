@@ -24,13 +24,15 @@ function displayItems(cb) {
   	var query = connection.query("SELECT * FROM products", function(err, res) {
 	    if (err) throw err;
 
-	    console.log(`\n.......................\nCurrent Items For Sale:\n------------`)
+
+
+	    console.log(`\n\nWELCOME to the BAMAZON Marketplace\n..................................\n\nCurrent Items For Sale:\n..........................\n------------------------`)
 
 	    for (var i = 0; i < res.length; i++) {
-	      console.log(`Item ID: ${res[i].item_id}\nItem Name: ${res[i].product_name}\nPrice: $${res[i].price}\n------------`);
+	      console.log(`Item ID: ${res[i].item_id}\nItem: ${res[i].product_name}\nPrice: $${res[i].price}\n------------------------`);
 	    }
 
-	    console.log(".......................")
+	    console.log("..........................")
 
 	    cb();
 
@@ -44,7 +46,7 @@ function run() {
 	inquirer.prompt([
 	  {
 	    name: "ID",
-	    message: "What is the ID of the item you would like to purchase?",
+	    message: "\nWhat is the ID of the item you would like to purchase?",
 	    type: "input",
         validate: function(value) {
           if (isNaN(value) === false) {
@@ -55,7 +57,7 @@ function run() {
 	  },
 	  {
 	    name: "amount",
-	    message: "How many would you like to buy?",
+	    message: "\nHow many would you like to buy?",
 	    type: "input",
 	    validate: function(value) {
           if (isNaN(value) === false) {
@@ -74,7 +76,7 @@ function run() {
 
 	    	if (amount > quantity) {
 
-	    		console.log("Insufficient Stock Left")
+	    		console.log(`\nInsufficient Stock Left to fill order! Only ${quantity} remaining`)
 	    		again();
 
 	    	} else {
@@ -115,7 +117,7 @@ function showCost(amountPurchased, ID, cb) {
   	connection.query("SELECT * FROM products WHERE ?", {item_id: ID}, function(err, res) {
 		if (err) throw err;
 		var cost = res[0].price * amountPurchased; 
-		console.log(`\nTotal cost for ${amountPurchased} ${res[0].product_name}(s) is: $${cost}\nProduct(s) Bought!\n`);
+		console.log(`\nTotal cost for ${amountPurchased} ${res[0].product_name}(s) is: $${cost}\nProduct(s) Bought!\nShipping 5-7 days\n\nTHANK YOU for choosing BAMAZON!\n`);
 
 		var previousCost = res[0].product_sales;
 		var newCost = (cost + previousCost);
@@ -131,7 +133,7 @@ function again() {
 	inquirer.prompt([
 	    {
 	      type: "confirm",
-	      message: "Back to the Store?",
+	      message: "\nBack to the Store?",
 	      name: "confirm",
 	      default: true
 	    }
@@ -140,6 +142,7 @@ function again() {
 		if (answer.confirm) {
   			displayItems(run);
 		} else {
+			console.log("\nThanks for visiting BAMAZON, Good-Bye!\n")
 	    	connection.end();
 		}
     

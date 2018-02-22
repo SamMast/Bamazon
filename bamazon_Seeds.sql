@@ -19,14 +19,17 @@ VALUES ("Xbox", "Electronics", "399", "100"),("Playstation", "Electronics", "359
 
 SELECT * FROM products;
 
-CREATE TABLE departments (
-  department_id INT NOT NULL AUTO_INCREMENT,
-  department_name VARCHAR(50) NOT NULL,
-  over_head_costs INT NOT NULL,
-  PRIMARY KEY (department_id)
-);
 
-INSERT INTO departments (department_name, over_head_costs)
-VALUES ("Electronics", "100000"),("Clothes", "15000");
+-- Supervisor mode schema/seed:
 
-SELECT * FROM departments;
+  CREATE TABLE departments (
+    department_id INT NOT NULL AUTO_INCREMENT,
+    department_name VARCHAR(50) NOT NULL,
+    over_head_costs INT NOT NULL,
+    PRIMARY KEY (department_id)
+  );
+
+  INSERT INTO departments (department_name, over_head_costs)
+  VALUES ("Electronics", "100000"),("Clothes", "15000");
+
+  SELECT * FROM departments;

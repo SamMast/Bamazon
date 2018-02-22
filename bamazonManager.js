@@ -24,7 +24,7 @@ function start() {
 	inquirer.prompt([
 	  {
 	    name: "choice",
-	    message: "Welcome Manager.  Please Choose an Action",
+	    message: "\nWelcome Manager.  Please Choose an Action\n",
 	    type: "rawlist",
 	    choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product", "QUIT"]
 	  }
@@ -43,8 +43,8 @@ function start() {
 			addNewProduct(again);
 
 		} else if (answer.choice === "QUIT") {
-			console.log("Good-Bye")
-			connection.end();
+			console.log("\nThanks for visiting BAMAZON, Good-Bye!\n")
+	    	connection.end();
 		}
 
 
@@ -99,7 +99,7 @@ function addToInventory(cb) {
 	inquirer.prompt([
 	  {
 	    name: "ID",
-	    message: "Type the ID of the item you would like to add to:",
+	    message: "\nType the ID of the item you would like to add to:",
 	    type: "input",
         validate: function(value) {
           if (isNaN(value) === false) {
@@ -110,7 +110,7 @@ function addToInventory(cb) {
 	  },
 	  {
 	  	name: "amount",
-	  	message: "How many would you like to add of this item?",
+	  	message: "\nHow many would you like to add of this item?",
 	  	type: "input",
         validate: function(value) {
           if (isNaN(value) === false) {
@@ -150,23 +150,23 @@ function addToInventory(cb) {
 }
 
 function addNewProduct(cb) {
- 	console.log("Inserting a new Product...\n");
+ 	console.log("Inserting new Product.  Please provide details...\n");
   
  	inquirer.prompt([
 	  	{
 	    name: "name",
-	    message: "New Product Name:",
+	    message: "\nNew Product Name:",
 	    type: "input"
 	  	},
 	  	{
 	    name: "dep",
-	    message: "New Product Department:",
+	    message: "\nNew Product Department:",
 	    type: "input"
 	  	},
 	  	{
 	    name: "price",
-	    message: "New Product Price:",
-	    type: "input"
+	    message: "\nNew Product Price:",
+	    type: "input",
         validate: function(value) {
           if (isNaN(value) === false) {
             return true;
@@ -176,7 +176,7 @@ function addNewProduct(cb) {
 	  	},
 	  	{
 	    name: "amount",
-	    message: "New Product Stock Quantity:",
+	    message: "\nNew Product Stock Quantity:",
 	    type: "input",
         validate: function(value) {
           if (isNaN(value) === false) {
@@ -212,7 +212,7 @@ function again() {
 	inquirer.prompt([
 	    {
 	      type: "confirm",
-	      message: "Back to the Menu?",
+	      message: "\nBack to the Menu?",
 	      name: "confirm",
 	      default: true
 	    }
@@ -221,6 +221,7 @@ function again() {
 		if (answer.confirm) {
   			start();
 		} else {
+			console.log("\nThanks for visiting BAMAZON, Good-Bye!\n")
 	    	connection.end();
 		}
     
