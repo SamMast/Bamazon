@@ -15,8 +15,7 @@ connection.connect(function(err) {
 
   	console.log("connected as id " + connection.threadId);
   	
-  	// displayItems(run());
-	run();
+  	displayItems(run);
 
 });
 
@@ -46,18 +45,24 @@ function run() {
 	  {
 	    name: "ID",
 	    message: "What is the ID of the item you would like to purchase?",
-	    type: "input"
+	    type: "input",
         // validate: function(value) {
-        //   if (value > 0) {
+        //   if (isNAN(value) === false) {
         //     return true;
         //   }
         //   return false;
-        // }
+        }
 	  },
 	  {
 	    name: "amount",
 	    message: "How many would you like to buy?",
-	    type: "input"
+	    type: "input",
+	    // validate: function(value) {
+     //      if (isNAN(value) === false) {
+     //        return true;
+     //      }
+     //      return false;
+     //    }
 	  }
 	]).then(function(answers) {
 
@@ -78,9 +83,8 @@ function run() {
 				updateItem(answers.ID, "stock_quantity", leftover);
 
 			// Once the update goes through, show the customer the total cost of their purchase.
-				showCost(amount, answers.ID);
+				showCost(amount, answers.ID, again);
 
-				again();
 	    	}
 
 		});		
@@ -102,22 +106,23 @@ function updateItem(ID, updateLocation, updateAmount) {
     	"UPDATE products SET ? WHERE ?",
 	    [obj, objB],
 	    function(err, response) {
-	      	console.log("Product(s) bought!\n");
 	    }
   	);
 
 }
 
-function showCost(amountPurchased, ID) {
+function showCost(amountPurchased, ID, cb) {
   	connection.query("SELECT * FROM products WHERE ?", {item_id: ID}, function(err, res) {
 		if (err) throw err;
 		var cost = res[0].price * amountPurchased; 
-		console.log(`Total cost for ${amountPurchased} ${res[0].product_name}(s) is: $${cost}`);
+		console.log(`\nTotal cost for ${amountPurchased} ${res[0].product_name}(s) is: $${cost}\nProduct(s) Bought!\n`);
 
 		var previousCost = res[0].product_sales;
 		var newCost = (cost + previousCost);
 
 		updateItem(ID, "product_sales", newCost);
+
+		cb();
 	});
 
 }
@@ -133,7 +138,7 @@ function again() {
 	]).then(function(answer) {
 
 		if (answer.confirm) {
-			run();
+  			displayItems(run);
 		} else {
 	    	connection.end();
 		}

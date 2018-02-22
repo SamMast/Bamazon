@@ -30,10 +30,10 @@ function start() {
     ]).then(function(answer) {
 
       if (answer.choice === "View Product Sales by Department") {
-        viewAll();
+        viewAll(again);
       
       } else if (answer.choice === "Create New Department") {
-        createNew();
+        createNew(again);
 
       } else if (answer.choice === "QUIT") {
         console.log("Good-Bye")
@@ -45,7 +45,7 @@ function start() {
 
 
 
-function viewAll() {
+function viewAll(cb) {
   connection.query("SELECT * FROM departments", function(err, res) {
     if (err) throw err;
 
@@ -53,14 +53,13 @@ function viewAll() {
     //display table here with npm table packase
 
 
-      
+    cb()
 
   });
 
-  //start();
 }
 
-function createNew() {
+function createNew(cb) {
   console.log("Inserting a new Department...\n");
   
   inquirer.prompt([
@@ -72,7 +71,13 @@ function createNew() {
       {
       name: "cost",
       message: "New Department Over Head Cost:",
-      type: "input"
+      type: "input",
+      // validate: function(value) {
+      //   if (isNAN(value) === false) {
+      //     return true;
+      //   }
+      //   return false;
+      // }
       }
   ]).then(function(answer) {
 
@@ -87,10 +92,28 @@ function createNew() {
         }
       );
 
+      cb();
+
   });
-  
-  //start();
-  
+    
 }
 
+function again() {
+  inquirer.prompt([
+      {
+        type: "confirm",
+        message: "Back to the Store?",
+        name: "confirm",
+        default: true
+      }
+  ]).then(function(answer) {
 
+    if (answer.confirm) {
+        displayItems(run);
+    } else {
+        connection.end();
+    }
+    
+  });
+
+}

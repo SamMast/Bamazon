@@ -31,16 +31,16 @@ function start() {
 	]).then(function(answer) {
 
 		if (answer.choice === "View Products for Sale") {
-			displayItems();
-		
+			displayItems(again);
+		 
 		} else if (answer.choice === "View Low Inventory") {
-			displayLowInventory();
+			displayLowInventory(again);
 
 		} else if (answer.choice === "Add to Inventory") {
-			addToInventory();
+			addToInventory(again);
 
 		} else if (answer.choice === "Add New Product") {
-			addNewProduct();
+			addNewProduct(again);
 
 		} else if (answer.choice === "QUIT") {
 			console.log("Good-Bye")
@@ -53,7 +53,7 @@ function start() {
 
 }
 
-function displayItems() {
+function displayItems(cb) {
   	var query = connection.query("SELECT * FROM products", function(err, res) {
 	    if (err) throw err;
 
@@ -65,13 +65,13 @@ function displayItems() {
 
 	    console.log(".......................")
 
-  	});
+		cb();
 
-  	// start();
+  	});
 
 }
 
-function displayLowInventory() {
+function displayLowInventory(cb) {
   	var query = connection.query("SELECT * FROM products", function(err, res) {
 	    if (err) throw err;
 
@@ -87,24 +87,37 @@ function displayLowInventory() {
 	    }
 
 	    console.log(".......................")
+		
+		cb();
 
   	});
 
-  	// start();
 
 }
 
-function addToInventory() {
+function addToInventory(cb) {
 	inquirer.prompt([
 	  {
 	    name: "ID",
 	    message: "Type the ID of the item you would like to add to:",
-	    type: "input"
+	    type: "input",
+        // validate: function(value) {
+        //   if (isNAN(value) === false) {
+        //     return true;
+        //   }
+        //   return false;
+        // }
 	  },
 	  {
 	  	name: "amount",
 	  	message: "How many would you like to add of this item?",
-	  	type: "input"
+	  	type: "input",
+        // validate: function(value) {
+        //   if (isNAN(value) === false) {
+        //     return true;
+        //   }
+        //   return false;
+        // }
 	  }
 	]).then(function(answer) {
 
@@ -124,19 +137,19 @@ function addToInventory() {
 			    "UPDATE products SET ? WHERE ?",
 			    [obj, objB],
 			    function(err, res) {
-			      console.log(answer.amount + " item(s) added!\n");
+			      	console.log(answer.amount + " item(s) added!\n");
+
+			      	cb();
 				}
 		  	);
 		});
+
  
 	});
 
-
-  	// start();
-
 }
 
-function addNewProduct() {
+function addNewProduct(cb) {
  	console.log("Inserting a new Product...\n");
   
  	inquirer.prompt([
@@ -154,15 +167,27 @@ function addNewProduct() {
 	    name: "price",
 	    message: "New Product Price:",
 	    type: "input"
+        // validate: function(value) {
+        //   if (isNAN(value) === false) {
+        //     return true;
+        //   }
+        //   return false;
+        // }
 	  	},
 	  	{
 	    name: "amount",
 	    message: "New Product Stock Quantity:",
-	    type: "input"
+	    type: "input",
+        // validate: function(value) {
+        //   if (isNAN(value) === false) {
+        //     return true;
+        //   }
+        //   return false;
+        // }
 	  	}
 	]).then(function(answer) {
 
-	  	var query = connection.query(
+	  	connection.query(
 		    "INSERT INTO products SET ?",
 		    {
 		    product_name: answer.name,
@@ -171,12 +196,34 @@ function addNewProduct() {
 		    stock_quantity: answer.amount
 		    },
 		    function(err, res) {
-		      console.log("Product inserted!\n");
-		    }
-	  	);
+		      	console.log("Product inserted!\n");
 
+				cb();
+			}
+
+	  	);
+	  	
 	});
 
-  	// start();
+
+}
+
+function again() {
+	inquirer.prompt([
+	    {
+	      type: "confirm",
+	      message: "Back to the Menu?",
+	      name: "confirm",
+	      default: true
+	    }
+	]).then(function(answer) {
+
+		if (answer.confirm) {
+  			start();
+		} else {
+	    	connection.end();
+		}
+    
+  });
 
 }
