@@ -5,18 +5,20 @@ This node.js and mySQL app is a virtual Marketplace that will allow the user dif
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+These instructions will get you up and running on your local machine for running the app. 
 
 
 ### Prerequisites
 
-The project is included with a package-json file.  Use an npm install to get the necessary packages before running the program.  Once up and running, navigate to the filepath in the terminal to get started.What things you need to install the software and how to install them
+First, clone the repository to your machine. 
+
+The repository has an included "package-json" file.  Use an npm install to get the necessary packages before running the program.  Once up and running, navigate to the filepath in the terminal to get started.What things you need to install the software and how to install them
 
 ```
 npm install
 ```
 
-If the above install is not working for any reason, the 3 required npm packages to install are:
+If the above npm install is not working for any reason, you can install the necessary packages individually.  The 3 required npm packages to install are:
 
 ```
 npm install inquirer
@@ -26,6 +28,9 @@ npm install cli-table
 
 Once you have these, the next step is to create the initial Database.  Head over to your mySQL profile and use the Seeds file to setup the initial store.  Once these database schemas and seed files are setup, you are ready to start.
 
+
+
+
 ### Instructions
 
 Once you are ready, you can head over to your terminal, and enter a command based on how you would like to view the platform.  Here are the 3 options:
@@ -34,7 +39,8 @@ Once you are ready, you can head over to your terminal, and enter a command base
 * If you would like to enter as a Manager, enter ```node bamazonManager.js```
 * If you would like to enter as a Supervisor, enter ```node bamazonSuperVisor.js```
 
-See below for more details on the modes (and Screenshots)
+See below for more details on the modes (and Screenshots).
+
 
 ## Modes:
 
