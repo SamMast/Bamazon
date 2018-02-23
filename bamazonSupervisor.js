@@ -46,9 +46,8 @@ function start() {
 
 
 function viewAll(cb) {
-  connection.query("SELECT * FROM departments LEFT JOIN products ON (products.department_name = departments.department_name)", function(err, res) {
+  connection.query("SELECT * FROM departments LEFT JOIN products ON (products.department_name = departments.department_name) GROUP BY departments.department_name", function(err, res) {
     if (err) throw err;
-    console.log(res);
 
     //Once I can get values to display, then try to display table here with npm cli-table package
     console.log(`\n....................................\nCurrent Department Sales:\n....................................\n---------------------------------`)
@@ -110,7 +109,7 @@ function again() {
   inquirer.prompt([
       {
         type: "confirm",
-        message: "\nBack to the Store?",
+        message: "\nBack to the Menu?",
         name: "confirm",
         default: true
       }
