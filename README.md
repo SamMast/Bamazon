@@ -44,8 +44,6 @@ In this mode, you will be able to Buy items from the Bamazon marketplace.  To ru
 
 ```node bamazonCustomer.js```
 
-![Image 1](images/Cust1.png)
-
 -Once entered, You will see a listing of the store items, their price, and the item ID number.
 
 ![Image 2](images/Cust2.png)
@@ -68,8 +66,6 @@ In this mode, you will be able to Buy items from the Bamazon marketplace.  To ru
 
 In this mode, you will be able to Manager the items from the Bamazon marketplace.  To run this mode, enter:
 ```node bamazonManager.js```
-
-![Image 1](images/Man1.png)
 
 * Once entered, You will see a menu.  Chose an Option to get started by typing the number of the option
 
@@ -103,8 +99,6 @@ In this mode, you will be able to Manager the items from the Bamazon marketplace
 In this mode, you will be able to Manager the items from the Bamazon marketplace.  To run this mode, enter:
 
 ```node bamazonSupervisor.js```
-
-![Image 1](images/Sup1.png)
 
 -Once entered, You will see a menu.  Chose an Option to get started
 
