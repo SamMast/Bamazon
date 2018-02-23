@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+const Table = require('cli-table');
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -46,17 +47,32 @@ function start() {
 
 
 function viewAll(cb) {
-  connection.query("SELECT * FROM departments LEFT JOIN products ON (products.department_name = departments.department_name) GROUP BY departments.department_name", function(err, res) {
+  connection.query("SELECT * FROM departments LEFT JOIN products ON (products.department_name = departments.department_name) GROUP BY departments.department_name ORDER BY departments.department_id", function(err, res) {
     if (err) throw err;
 
-    //Once I can get values to display, then try to display table here with npm cli-table package
-    console.log(`\n....................................\nCurrent Department Sales:\n....................................\n---------------------------------`)
+    var table = new Table({
+        head: ['Current Department Sales']
+      , colWidths: [102]
+    });
+     
+    console.log(table.toString());
+
+    var table1 = new Table({
+      head: ['Department ID', 'Department Name', 'Overhead Costs', 'Product Sales', 'Total Profit']
+      , colWidths: [19 , 20, 20, 20, 20]
+    });
 
       for (var i = 0; i < res.length; i++) {
+        
         var totalProfit = (parseInt(res[i].product_sales) - parseInt(res[i].over_head_costs));
 
-        console.log(`Department ID: ${res[i].department_id}\nDepartment Name: ${res[i].department_name}\nOverhead Costs: $${res[i].over_head_costs}\nProduct Sales: ${res[i].product_sales}\nTotal Profit: ${totalProfit}\n---------------------------------`);
+        table1.push(
+            [`${res[i].department_id}`, `${res[i].department_name}`, `${res[i].over_head_costs}`, `${res[i].product_sales}`, `${totalProfit}`]
+        );
+
       }
+
+    console.log(table1.toString());
 
     console.log("....................................")
 

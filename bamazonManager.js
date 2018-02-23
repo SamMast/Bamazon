@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+const Table = require('cli-table');
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -57,11 +58,27 @@ function displayItems(cb) {
   	var query = connection.query("SELECT * FROM products", function(err, res) {
 	    if (err) throw err;
 
-	    console.log(`\n.......................\nCurrent Items For Sale:\n------------`)
+		var table = new Table({
+		    head: ['Current Inventory For Sale:']
+		  , colWidths: [102]
+		});
+		 
+		console.log(table.toString());
+
+		var table1 = new Table({
+			head: ['Item ID', 'Item', 'Price', 'Stock Quantity']
+		  , colWidths: [15 , 35, 20, 30]
+		});
 
 	    for (var i = 0; i < res.length; i++) {
-	      console.log(`Item ID: ${res[i].item_id}\nItem Name: ${res[i].product_name}\nPrice: $${res[i].price}\nStock Quantity: ${res[i].stock_quantity}\n------------`);
+			 
+			table1.push(
+			    [`${res[i].item_id}`, `${res[i].product_name}`, `${res[i].price}`, `${res[i].stock_quantity}`]
+			);
+
 	    }
+
+		console.log(table1.toString());
 
 	    console.log(".......................")
 
@@ -75,16 +92,29 @@ function displayLowInventory(cb) {
   	var query = connection.query("SELECT * FROM products", function(err, res) {
 	    if (err) throw err;
 
+		var table = new Table({
+		    head: ['Low Inventory Items (<5)']
+		  , colWidths: [102]
+		});
+		 
+		console.log(table.toString());
 
-
-	    console.log(`\n.......................\nLow Inventory Items (<5):\n-----------------------`)
+		var table1 = new Table({
+			head: ['Item ID', 'Item', 'Price', 'Stock Quantity']
+		  , colWidths: [15 , 35, 20, 30]
+		});
 
 	    for (var i = 0; i < res.length; i++) {
-	    	var stock = parseInt(res[i].stock_quantity)
-	    	if (stock <= 5) {
-	      		console.log(`Item ID: ${res[i].item_id}\nItem Name: ${res[i].product_name}\nPrice: $${res[i].price}\nStock Quantity: ${res[i].stock_quantity}\n------------`);
-	    	}
+		  	var stock = parseInt(res[i].stock_quantity)
+	    	if (stock <= 5) {	 
+				table1.push(
+				    [`${res[i].item_id}`, `${res[i].product_name}`, `${res[i].price}`, `${res[i].stock_quantity}`]
+				);
+			}
+
 	    }
+
+		console.log(table1.toString());
 
 	    console.log(".......................")
 		

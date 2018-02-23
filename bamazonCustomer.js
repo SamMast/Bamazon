@@ -1,5 +1,7 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+const Table = require('cli-table');
+
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -25,12 +27,33 @@ function displayItems(cb) {
 	    if (err) throw err;
 
 
+		var table = new Table({
+		    head: ['WELCOME to the BAMAZON Marketplace']
+		  , colWidths: [102]
+		});
+		 
+		// table is an Array, so you can `push`, `unshift`, `splice` and friends 
+		table.push(
+		    ['Current Items For Sale:']
+		);
+		 
+		console.log(table.toString());
 
-	    console.log(`\n\nWELCOME to the BAMAZON Marketplace\n..................................\n\nCurrent Items For Sale:\n..........................\n------------------------`)
+	      
+
+		var table1 = new Table({
+			head: ['Item ID', 'Item', 'Price']
+		  , colWidths: [20 , 40, 40]
+		});
 
 	    for (var i = 0; i < res.length; i++) {
-	      console.log(`Item ID: ${res[i].item_id}\nItem: ${res[i].product_name}\nPrice: $${res[i].price}\n------------------------`);
+			 
+			table1.push(
+			    [`${res[i].item_id}`, `${res[i].product_name}`, `${res[i].price}`]
+			);
+
 	    }
+		console.log(table1.toString());
 
 	    console.log("..........................")
 
