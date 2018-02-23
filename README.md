@@ -44,7 +44,7 @@ In this mode, you will be able to Buy items from the Bamazon marketplace.  To ru
 
 ```node bamazonCustomer.js```
 
--Once entered, You will see a listing of the store items, their price, and the item ID number.
+* Once entered, You will see a listing of the store items, their price, and the item ID number.
 
 ![Image 2](images/Cust2.png)
 
@@ -79,11 +79,11 @@ In this mode, you will be able to Manager the items from the Bamazon marketplace
 
 ![Image 4](images/Man4.png)
 
--"Add to Inventory" will allow the Manager to add more stock to any item.  Just enter the Item ID number, and then the quantity of stock you'd ike to add to the inventory, and the BAMAZOn marketplace will add new stock instantly.
+-"Add to Inventory" will allow the Manager to add more stock to any item.  Just enter the Item ID number, and then the quantity of stock you'd ike to add to the inventory, and the BAMAZOn marketplace will add new stock instantly. (If you want to view the updated stock amount go back and select "View Products for Sale")
 
 ![Image 5](images/Man5.png)
 
--"Add New Product" will allow the Manager to add a totally new product.  You will just need to add a Name, Price, and starting Stock Quantity, and the BAMAZON Marketplace will update in real time!
+-"Add New Product" will allow the Manager to add a totally new product.  You will just need to add a Name, Price, and starting Stock Quantity, and the BAMAZON Marketplace will update in real time! (If you want to view your new item, go back and select "View Products for Sale")
 
 ![Image 6](images/Man6.png)
 
@@ -100,19 +100,19 @@ In this mode, you will be able to Manager the items from the Bamazon marketplace
 
 ```node bamazonSupervisor.js```
 
--Once entered, You will see a menu.  Chose an Option to get started
+* Once entered, You will see a menu.  Chose an Option to get started
 
 ![Image 2](images/Sup2.png)
 
--"View Products Sales by Department" will list the Department stats, including department ID, department name, total overhead cost, current sales total, and total profit
+* "View Products Sales by Department" will list the Department stats, including department ID, department name, total overhead cost, current sales total, and total profit
 
 ![Image 3](images/Sup3.png)
 
--"Create New Department" will allow the Supervisor to create new departments to monitor any new items added by the manager.  The supervisor will be asked for the department name, Overhead Cost, and  the rest of the data will update automatically if there are items with the same Department in the Marketplace.  
+* "Create New Department" will allow the Supervisor to create new departments to monitor any new items added by the manager.  The supervisor will be asked for the department name, Overhead Cost, and the rest of the data will update automatically if there are items with the same Department in the Marketplace.  (If you would like to view your new Department, you can go back and "View Product Sales by Department")
 
 ![Image 4](images/Sup4.png)
 
--"QUIT" This will shit down the program.
+* "QUIT" This will shit down the program.
 
 ![Image 5](images/Sup5.png)
 
