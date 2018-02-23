@@ -30,9 +30,9 @@ Once you have these, the next step is to create the initial Database.  Head over
 
 Once you are ready, you can head over to your terminal, and enter a command based on how you would like to view the platform.  Here are the 3 options:
 
-*If you would like to enter Bamazon as a customer, enter ```node bamazonCustomer```  
-*If you would like to enter as a Manager, enter ```node bamazonManager```
-*If you would like to enter as a Supervisor, enter ```node bamazonSuperVisor```
+* If you would like to enter Bamazon as a customer, enter ```node bamazonCustomer```  
+* If you would like to enter as a Manager, enter ```node bamazonManager```
+* If you would like to enter as a Supervisor, enter ```node bamazonSuperVisor```
 
 See below for more details on the modes (and Screenshots)
 
@@ -41,6 +41,7 @@ See below for more details on the modes (and Screenshots)
 ### Customer Mode:
 
 In this mode, you will be able to Buy items from the Bamazon marketplace.  To run this mode, enter:
+
 ```node bamazonCustomer```
 
 -Once entered, You will see a listing of the store items, their price, and the item ID number.
