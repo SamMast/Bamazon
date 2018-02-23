@@ -47,7 +47,6 @@ See below for more details on the modes (and Screenshots).
 ### Customer Mode:
 
 In this mode, you will be able to Buy items from the Bamazon marketplace.  To run this mode, enter:
-
 ```node bamazonCustomer.js```
 
 ![Image 1](images/Cust1.png)
@@ -57,10 +56,10 @@ In this mode, you will be able to Buy items from the Bamazon marketplace.  To ru
 ![Image 2](images/Cust2.png)
 
 * When you find an item you would like to purchase, enter its ID number in the prompt.
--You will then be prompted on how many you'd like to buy.
+* You will then be prompted on how many you'd like to buy.
 
 * Once you decide, Bamazon will show you the total and send the item to you (not really)
--You will then be allowed to re-enter the store and make more purchases, or leave for now.  Click enter to stay, or type "N" to leave.
+* You will then be allowed to re-enter the store and make more purchases, or leave for now.  Click enter to stay, or type "N" to leave.
 
 ![Image 3](images/Cust3.png)
 
@@ -81,23 +80,23 @@ In this mode, you will be able to Manager the items from the Bamazon marketplace
 
 ![Image 2](images/Man2.png)
 
--"View Products for Sale" will list the total inventory, including item ID, name, price, and current stock
+* "View Products for Sale" will list the total inventory, including item ID, name, price, and current stock
 
 ![Image 3](images/Man3.png)
 
--"View Low Inventory" will list any items with a current stock under 5 items.  THis will allow the manager to monitor the store for items getting too low.
+* "View Low Inventory" will list any items with a current stock under 5 items.  THis will allow the manager to monitor the store for items getting too low.
 
 ![Image 4](images/Man4.png)
 
--"Add to Inventory" will allow the Manager to add more stock to any item.  Just enter the Item ID number, and then the quantity of stock you'd ike to add to the inventory, and the BAMAZOn marketplace will add new stock instantly. (If you want to view the updated stock amount go back and select "View Products for Sale")
+* "Add to Inventory" will allow the Manager to add more stock to any item.  Just enter the Item ID number, and then the quantity of stock you'd ike to add to the inventory, and the BAMAZOn marketplace will add new stock instantly. (If you want to view the updated stock amount go back and select "View Products for Sale")
 
 ![Image 5](images/Man5.png)
 
--"Add New Product" will allow the Manager to add a totally new product.  You will just need to add a Name, Price, and starting Stock Quantity, and the BAMAZON Marketplace will update in real time! (If you want to view your new item, go back and select "View Products for Sale")
+* "Add New Product" will allow the Manager to add a totally new product.  You will just need to add a Name, Price, and starting Stock Quantity, and the BAMAZON Marketplace will update in real time! (If you want to view your new item, go back and select "View Products for Sale")
 
 ![Image 6](images/Man6.png)
 
--"QUIT" This will shut down the program.
+* "QUIT" This will shut down the program.
 
 ![Image 7](images/Man7.png)
 
@@ -107,7 +106,6 @@ In this mode, you will be able to Manager the items from the Bamazon marketplace
 ### SuperVisor Mode
 
 In this mode, you will be able to Manager the items from the Bamazon marketplace.  To run this mode, enter:
-
 ```node bamazonSupervisor.js```
 
 ![Image 1](images/Sup1.png)
